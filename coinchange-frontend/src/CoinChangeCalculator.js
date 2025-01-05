@@ -1,31 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { calculateCoinChange } from "./apiService";
+import "./App.css"; // Import the CSS file for styling
 
 const CoinChangeCalculator = () => {
   const [targetAmount, setTargetAmount] = useState("");
-  const [coinDenominations, setCoinDenominations] = useState("");
   const [coinChange, setCoinChange] = useState([]);
   const [error, setError] = useState("");
 
+  const coinDenominations = [
+    0.01, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 50, 100, 1000,
+  ];
+
   const handleCalculate = async () => {
     try {
-      const denominations = coinDenominations.split(",").map(Number);
-      const result = await calculateCoinChange(
-        parseFloat(targetAmount),
-        denominations
+      const target = parseFloat(targetAmount);
+      const filteredDenominations = coinDenominations.filter(
+        (denomination) => denomination <= target
       );
-      setCoinChange(result.coinChange);
+      const result = await calculateCoinChange(target, filteredDenominations);
+      setCoinChange(result); // Directly set the result as coinChange
       setError("");
     } catch (err) {
+      console.error("Error calculating coin change:", err);
       setError("Failed to calculate coin change. Please check your input.");
       setCoinChange([]);
     }
   };
 
+  useEffect(() => {
+    if (targetAmount === "") {
+      setCoinChange([]);
+    }
+  }, [targetAmount]);
+
+  const filteredDenominations = coinDenominations.filter(
+    (denomination) => denomination <= parseFloat(targetAmount)
+  );
+
   return (
-    <div>
+    <div className="calculator-container">
       <h1>Coin Change Calculator</h1>
-      <div>
+      {filteredDenominations.length > 0 && (
+        <div className="section common-style">
+          <label>Available Coin Denominations:</label>
+          <div className="coin-denominations-list">
+            {filteredDenominations.map((denomination, index) => (
+              <span key={index} className="coin-item">
+                {denomination}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="section input-group common-style">
         <label>
           Target Amount:
           <input
@@ -35,28 +62,25 @@ const CoinChangeCalculator = () => {
           />
         </label>
       </div>
-      <div>
-        <label>
-          Coin Denominations (comma-separated):
-          <input
-            type="text"
-            value={coinDenominations}
-            onChange={(e) => setCoinDenominations(e.target.value)}
-          />
-        </label>
+      <div className="section">
+        <button onClick={handleCalculate}>Calculate</button>
       </div>
-      <button onClick={handleCalculate}>Calculate</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {coinChange && coinChange.length > 0 && (
-        <div>
-          <h2>Coin Change:</h2>
-          <ul>
+      {coinChange.length > 0 && (
+        <div className="section common-style">
+          <label>Coin Change:</label>
+          <div className="coin-change-list">
             {coinChange.map((coin, index) => (
-              <li key={index}>{coin}</li>
+              <span key={index} className="coin-item">
+                {coin}
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
       )}
+      <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} KX Wong. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

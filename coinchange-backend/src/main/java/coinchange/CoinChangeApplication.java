@@ -40,6 +40,7 @@ public class CoinChangeApplication extends Application<CoinChangeConfiguration> 
     public void run(final CoinChangeConfiguration configuration, final Environment environment) throws Exception {
         setupLogging(configuration.getProperty("loggingConfig"));
         LOGGER.info("Logging config: {}", configuration.getProperty("loggingConfig"));
+        LOGGER.info("© {} KX Wong. All rights reserved.", java.time.Year.now());
         environment.jersey().register(new CoinChangeRouter(configuration));
         environment.jersey().register(new CorsFilter());
 

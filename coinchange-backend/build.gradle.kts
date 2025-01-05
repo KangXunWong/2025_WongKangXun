@@ -1,4 +1,4 @@
-version = "1.0.0" // Replace with your desired version
+version = "1.0.1" // Replace with your desired version
 
 plugins {
     application
@@ -31,18 +31,18 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs("app/src/main/java")
+            srcDirs("coinchange-backend/src/main/java")
         }
         resources {
-            srcDirs("app/resources")
+            srcDirs("coinchange-backend/resources")
         }
     }
     test {
         java {
-            srcDirs("app/src/test/java")
+            srcDirs("coinchange-backend/src/test/java")
         }
         resources {
-            srcDirs("app/resources")
+            srcDirs("coinchange-backend/resources")
         }
     }
 }
