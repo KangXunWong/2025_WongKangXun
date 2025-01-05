@@ -1,0 +1,30 @@
+[versions]
+guava = "33.0.0-jre"
+junit-jupiter = "5.10.2"
+junit-jupiter-api = "5.8.1"
+junit-jupiter-engine = "5.8.1"
+logback = "1.2.11"
+slf4j = "1.7.32"
+dropwizard = "2.1.1"
+jakartaValidation = "3.0.2"
+javaxValidation = "2.0.1.Final"
+dropwizardLogging = "2.1.1"
+mockito = "4.0.0"
+wiremock = "2.31.0"
+
+[libraries]
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
+junitJupiterEngine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+dropwizard = { module = "io.dropwizard:dropwizard-core", version.ref = "dropwizard" }
+dropwizardJetty = { module = "io.dropwizard:dropwizard-jetty", version.ref = "dropwizard" }
+jakartaValidation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakartaValidation" }
+javaxValidation = { module = "javax.validation:validation-api", version.ref = "javaxValidation" }
+dropwizardLogging = { module = "io.dropwizard:dropwizard-logging", version.ref = "dropwizardLogging" }
+dropwizardTesting = { module = "io.dropwizard:dropwizard-testing", version.ref = "dropwizard" }
+mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockitoJUnitJupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+wiremock = { module = "com.github.tomakehurst:wiremock-jre8", version.ref = "wiremock" }

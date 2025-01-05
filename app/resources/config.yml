@@ -1,0 +1,24 @@
+# logging:
+#   level: INFO
+#   loggers:
+#     io.dropwizard: INFO
+#   appenders:
+#     - type: console
+#       threshold: ALL
+#       target: stdout
+#       logFormat: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#     - type: file
+#       threshold: ALL
+#       currentLogFilename: logs/application.log
+#       archivedLogFilenamePattern: logs/application-%d.log.gz
+#       archivedFileCount: 7
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+# Add any other configuration properties needed for your application
+loggingConfig: ./resources/logback.xml
