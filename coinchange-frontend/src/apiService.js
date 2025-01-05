@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/coin-change";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const calculateCoinChange = async (targetAmount, coinDenominations) => {
   try {
